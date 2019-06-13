@@ -17,7 +17,6 @@ export class FlussiComponent implements OnInit, OnDestroy {
   constructor(private flussiService: FlussiService) { }
 
   ngOnInit() {
-
     this.getDati();
   }
 
@@ -26,9 +25,6 @@ export class FlussiComponent implements OnInit, OnDestroy {
   }
 
   getDati() {
-    /*   this.flussiService.getFlussi()
-        .subscribe((result) => this.flussi = result);*/
-
     this.flussiService.getFlussi();
     this.subscription = this.flussiService.flussiO.subscribe(data => this.flussi = data);
   }

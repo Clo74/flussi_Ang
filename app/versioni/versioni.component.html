@@ -6,6 +6,7 @@
         <thead class="thead-dark">
           <tr>
             <th>id</th>
+            <th hidden></th>
             <th>flusso</th>
             <th>data</th>
             <th>versione</th>
@@ -16,7 +17,8 @@
           [class.selected] = "versione === versioneSelected"
           (click) = "onSelect(versione)">
             <td>{{versione.id}}</td>
-            <td>{{versione.flusso}}</td>
+            <td hidden>{{versione.flusso.id}}</td>
+            <td>{{versione.flusso.tabella}}</td>
             <td>{{versione.data}}</td>
             <td>{{versione.versione}}</td>
           </tr>

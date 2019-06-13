@@ -8,7 +8,14 @@
   </div>
   <div class="form-group">
     <label>flusso nome tabella: </label>
-    <input [(ngModel)]="versione.flusso" class="form-control" placeholder="data" />
+    <select class="custom-select" [compareWith]="compareVers" 
+      [(ngModel)]="versione.flusso">
+      <option *ngFor="let flusso of flussi"
+        [ngValue]="flusso"
+        >{{flusso.tabella}}
+    </option>
+    </select>
+  <!--<input [(ngModel)]="versione.flusso" class="form-control" placeholder="data" />-->  
   </div>
   <div class="form-group">
     <label>versione: </label>

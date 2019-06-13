@@ -29,12 +29,13 @@ export class VersioniComponent implements OnInit, OnDestroy {
    * mi torna un json con la campo flussi un json composto da id e tabella
    * lo sostituisco con un campo flusso = flusso.tabella
    */
-  ricreaJson(json) {
+  /*ricreaJson(json) {
     this.versioni = [];
     console.log(json);
     json.forEach(element => {
       this.myJson = {
         id: element.id,
+        idFlusso: element.flusso.id,
         flusso: element.flusso.tabella,
         data: element.data,
         versione: element.versione
@@ -42,14 +43,14 @@ export class VersioniComponent implements OnInit, OnDestroy {
       this.versioni.push(this.myJson);
     });
     return this.versioni;
-  }
+  }*/
 
   getDati() {
     this.versioniService.getVersioni();
 
     this.subscription = this.versioniService.versioniO
       .subscribe(data => {
-        this.versioni = this.ricreaJson(data);
+        this.versioni = data;
       });
 
     /*this.versioniService.getVersioni()

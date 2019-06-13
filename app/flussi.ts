@@ -1,5 +1,10 @@
 
 export class Flussi {
     id: number;
-    tabella: string;
+    tabella: String;
+
+    constructor(id, tabella) {
+        this.id = id;
+        this.tabella = tabella;
+    }
 }

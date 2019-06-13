@@ -3,6 +3,7 @@ import { Flussi } from '../flussi';
 import { ActivatedRoute } from '@angular/router';
 import { FlussiService } from '../flussi.service';
 import { Location } from '@angular/common';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-flusso-detail',
@@ -10,30 +11,42 @@ import { Location } from '@angular/common';
   styleUrls: ['./flusso-detail.component.css']
 })
 
-export class FlussoDetailComponent implements OnInit {
+export class FlussoDetailComponent implements OnInit, OnDestroy {
 
   @Input() flusso: Flussi;
+  insTab: String;
+  appFlusso: Flussi;
+  private subscription: Subscription;
 
   constructor(
   private route: ActivatedRoute,
   private flussiService: FlussiService,
   private location: Location,
-  ) { }
+  ) {
+   }
 
   ngOnInit() {
+    this.subscription = this.flussiService.flussoO.subscribe(data => this.flusso = data);
+
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+  }
+  appareDiv() {
+    document.getElementById('divIns').style.display = 'block';
   }
 
   delFlusso(id: number) {
     console.log(id);
     this.flussiService.delFlusso(id);
-    //.subscribe(response => {
-      //this.flussoComp.flussi = this.flussoComp.flussi.filter(elem => elem.id !== id)});
   }
 
-  postFlusso(flusso: Flussi) {
-    console.log(flusso);
+  postFlusso() {
+    this.appFlusso = new Flussi(null, this.insTab);
+    this.flussiService.postFlusso(this.appFlusso);
+    document.getElementById('divIns').style.display = 'none';
 
-    this.flussiService.postFlusso(flusso);
   }
 
   putFlusso(id: number, flusso: Flussi) {

@@ -8,13 +8,13 @@ import { BehaviorSubject } from 'rxjs';
 })
 
 export class FlussiService {
-  public firstPage = '';
-  public prevPage = '';
-  public nextPage = '';
-  public lastPage = '';
   apiURL = 'http://localhost:8080/gestioneflussi/resources/flussi';
 
+  myJson: any;
+
+  flusso: Flussi;
   flussiO: BehaviorSubject<Flussi[]> = new BehaviorSubject<Flussi[]>([]);
+  flussoO: BehaviorSubject<Flussi> = new BehaviorSubject<Flussi>(this.flusso);
 
   constructor(private httpClient: HttpClient) { }
 
@@ -43,10 +43,17 @@ export class FlussiService {
 
   public postFlusso(flusso: Flussi): void {
     this.httpClient.post(this.apiURL, flusso)
-    .subscribe(response => this.getFlussi());
+    .subscribe(response => {
+      this.myJson = response;
+      console.log(response);
+      this.flusso = new Flussi(this.myJson.id, this.myJson.tabella);
+      this.flussoO.next(this.flusso);
+      this.getFlussi();
+    });
   }
 
   public putFlusso(id: number,flusso: Flussi): void {
+    console.log(flusso);
     this.httpClient.put(`${this.apiURL}/${id}`, flusso)
     .subscribe(response => this.getFlussi());
   }
