@@ -1,0 +1,22 @@
+<div *ngIf="versione" class="form-group">
+
+  <h2>Details</h2>
+  <div class="form-group"><span>id: </span>{{versione.id}}</div>
+  <div class="form-group">
+    <label>data: </label>
+    <input [(ngModel)]="versione.data" class="form-control" placeholder="data" />
+  </div>
+  <div class="form-group">
+    <label>flusso nome tabella: </label>
+    <input [(ngModel)]="versione.flusso" class="form-control" placeholder="data" />
+  </div>
+  <div class="form-group">
+    <label>versione: </label>
+    <input [(ngModel)]="versione.versione" class="form-control" placeholder="data" />
+  </div>
+  <div class="form-group">
+    <button (click)= "delVersione(versione.id)" class="btn btn-primary btn-sm">CANCELLA</button>
+    <button (click)= "postVersione(versione)" class="btn btn-primary btn-sm">INSERISCI</button>
+    <button (click)= "putVersione(versione.id, versione)" class="btn btn-primary btn-sm">MODIFICA</button>
+  </div>
+</div>

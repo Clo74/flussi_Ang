@@ -1,0 +1,24 @@
+<form>
+  <div class="row">
+    <div class="col">
+      <table class="table table-striped table-hover">
+          <caption>Elenco Flussi</caption>
+          <thead class="thead-dark">
+          <tr>
+            <th>id</th>
+            <th>tabella</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let flusso of flussi" [class.selected]="flusso === flussoSelected" (click)="onSelect(flusso)">
+            <td>{{flusso.id}}</td>
+            <td>{{flusso.tabella}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="col">
+      <app-flusso-detail [flusso]="flussoSelected"></app-flusso-detail>
+    </div>
+  </div>
+</form>

@@ -1,0 +1,16 @@
+<div *ngIf="flusso" class="form-group">
+
+  <h2>{{flusso.tabella | uppercase}} Details</h2>
+  <div class="form-group"><span>id: </span>{{flusso.id}}</div>
+  <div class="form-group">
+    <label>tabella:
+      <input [(ngModel)]="flusso.tabella" placeholder="nome tabella" />
+    </label>
+    <div class="form-group">
+      <button (click)="delFlusso(flusso.id)" class="btn btn-primary btn-sm">CANCELLA</button>
+      <button (click)="postFlusso(flusso)" class="btn btn-primary btn-sm">INSERISCI</button>
+      <button (click)="putFlusso(flusso.id, flusso)" class="btn btn-primary btn-sm">MODIFICA</button>
+    </div>
+  </div>
+
+</div>
